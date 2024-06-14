@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to BangixOkazaki's Website</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            color: #ff6347;
+            margin-top: 50px;
+        }
+        #balloons, #cake {
+            display: none;
+            position: relative;
+        }
+        .balloon {
+            width: 60px;
+            height: 80px;
+            border-radius: 60px 60px 30px 30px;
+            position: absolute;
+            animation: fly 6s ease-in-out infinite;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+        }
+        .balloon::before {
+            content: '';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            width: 2px;
+            height: 40px;
+            background: #333;
+        }
+        @keyframes fly {
+            0% { transform: translateY(100vh); }
+            100% { transform: translateY(-1000px); }
+        }
+        #crackers {
+            display: none;
+        }
+        .cracker {
+            width: 20px;
+            height: 20px;
+            background-color: gold;
+            border-radius: 50%;
+            position: absolute;
+            animation: explode 1s ease-out forwards;
+        }
+        @keyframes explode {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(5); opacity: 0; }
+        }
+        #cake {
+            margin: 20px auto;
+            width: 200px;
+            height: 150px;
+            background: #D2691E;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+        }
+        #cake::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 20px;
+            background: #fff;
+            top: -20px;
+            left: 25px;
+            border-radius: 10px 10px 0 0;
+        }
+        #candle {
+            display: none;
+            position: absolute;
+            width: 10px;
+            height: 40px;
+            background: yellow;
+            top: -60px;
+            left: 95px;
+        }
+        #candle::before {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: red;
+            border-radius: 50%;
+            top: -10px;
+            left: 0;
+            box-shadow: 0 0 20px 5px rgba(255,0,0,0.7);
+        }
+        button {
+            margin: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to BangixOkazaki's Website</h1>
+    <button onclick="startSurprise()">Start the Surprise</button>
+
+    <div id="surprise" style="display: none;">
+        <h2>Happy Birthday Dear Toma</h2>
+        <p>Wish you many many happy returns of the day. Another year and you are just getting sweeter. Cheers to the memories we made. Those were like a movie to me. Wish you stay always happy.</p>
+        <button onclick="flyBalloons()">Fly Balloons</button>
+        <button onclick="launchCrackers()">Launch Crackers</button>
+        <button onclick="showCake()">Show Cake</button>
+        <button onclick="lightCandle()">Light Candle</button>
+    </div>
+
+    <div id="balloons">
+        <div class="balloon" style="left: 10%; background-color: red;"></div>
+        <div class="balloon" style="left: 30%; background-color: blue;"></div>
+        <div class="balloon" style="left: 50%; background-color: green;"></div>
+        <div class="balloon" style="left: 70%; background-color: yellow;"></div>
+        <div class="balloon" style="left: 90%; background-color: purple;"></div>
+    </div>
+
+    <div id="crackers"></div>
+
+    <div id="cake">
+        <div id="candle"></div>
+    </div>
+
+    <script>
+        function startSurprise() {
+            document.getElementById('surprise').style.display = 'block';
+        }
+
+        function flyBalloons() {
+            document.getElementById('balloons').style.display = 'block';
+        }
+
+        function launchCrackers() {
+            var crackers = document.getElementById('crackers');
+            crackers.style.display = 'block';
+            for (let i = 0; i < 30; i++) {
+                let cracker = document.createElement('div');
+                cracker.className = 'cracker';
+                cracker.style.left = Math.random() * 100 + '%';
+                cracker.style.top = Math.random() * 100 + 'vh';
+                crackers.appendChild(cracker);
+                setTimeout(() => {
+                    cracker.remove();
+                }, 1000);
+            }
+        }
+
+        function showCake() {
+            document.getElementById('cake').style.display = 'block';
+        }
+
+        function lightCandle() {
+            document.getElementById('candle').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
